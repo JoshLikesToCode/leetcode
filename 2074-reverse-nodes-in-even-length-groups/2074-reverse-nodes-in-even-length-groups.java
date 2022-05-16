@@ -43,10 +43,7 @@ class Solution {
                     prev = curr;
                     curr = next;
                 }
-                if(prevList != null)
-                    prevList.next = prev;
-                else
-                    head = prev;
+                prevList.next = prev;
                 currList.next = curr;
                 prev = currList;
             }
