@@ -7,30 +7,25 @@ class Solution {
             res.add(Integer.parseInt(expression));
             return res;
         }
-        // otherwise, process the expression BFS style
         for(int i = 0; i < expression.length(); i++)
         {
-            int currOperator = expression.charAt(i);
-            // start working on expression as soon as we find first op.
-            // split expression into sub expressions and process from there. Shoud look like this:
-            // expression 1 | currOperator | expression 2
-            if(currOperator == '+' || currOperator == '-' || currOperator == '*')
+            Character currChar = expression.charAt(i);
+            if(currChar == '*' || currChar == '+' || currChar == '-')
             {
-                String expressionFirstHalf = expression.substring(0, i);
-                String expressionSecondHalf = expression.substring(i + 1);
-                List<Integer> firstHalf = diffWaysToCompute(expressionFirstHalf);
-                List<Integer> secondHalf = diffWaysToCompute(expressionSecondHalf);
-                // begin processing first and second half of expressions using the currOperator
-                for(int v1 : firstHalf)
+                String left = expression.substring(0, i);
+                String right = expression.substring(i+1);
+                List<Integer> leftHalf = diffWaysToCompute(left);
+                List<Integer> rightHalf = diffWaysToCompute(right);
+                for(Integer val1 : leftHalf)
                 {
-                    for(int v2: secondHalf)
+                    for(Integer val2: rightHalf)
                     {
-                        if(currOperator == '+')
-                            res.add(v1+v2);
-                        else if(currOperator == '-')
-                            res.add(v1-v2);
-                        else if(currOperator == '*')
-                            res.add(v1*v2);
+                        if(currChar == '+')
+                            res.add(val1+val2);
+                        if(currChar == '-')
+                            res.add(val1-val2);
+                        if(currChar == '*')
+                            res.add(val1*val2);
                     }
                 }
             }
