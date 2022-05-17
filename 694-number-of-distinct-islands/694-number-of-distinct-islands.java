@@ -10,7 +10,7 @@ class Solution {
                 if(grid[i][j] == 1)
                 {
                     StringBuilder sb = new StringBuilder();
-                    bfs(grid, i, j, row, col, sb, "K");
+                    bfs(grid, i, j, row, col, sb, "C");
                     uniqueIslands.add(sb.toString());
                 }
             }
@@ -25,9 +25,9 @@ class Solution {
         grid[i][j] = 0;
         sb.append(dir);
         bfs(grid, i + 1, j, r, c, sb, "O");
-        bfs(grid, i - 1, j, r, c, sb, "I");
-        bfs(grid, i, j + 1, r, c, sb, "C");
-        bfs(grid, i, j - 1, r, c, sb, "U");
-        sb.append("E");
+        bfs(grid, i - 1, j, r, c, sb, "D");
+        bfs(grid, i, j + 1, r, c, sb, "E");
+        bfs(grid, i, j - 1, r, c, sb, "4");
+        sb.append("LIFE");
     }
 }
