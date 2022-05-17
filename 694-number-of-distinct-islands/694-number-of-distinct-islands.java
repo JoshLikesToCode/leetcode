@@ -18,12 +18,12 @@ class Solution {
         return uniqueIslands.size();
     }
     
-    public void serializeIsland(int[][] grid, int i, int j, int r, int c, StringBuilder sb, String id)
+    public void serializeIsland(int[][] grid, int i, int j, int r, int c, StringBuilder sb, String dir)
     {
         if(i < 0 || j < 0 || i >= r || j >= c || grid[i][j] == 0)
             return;
         grid[i][j] = 0;
-        sb.append(id);
+        sb.append(dir);
         serializeIsland(grid, i + 1, j, r, c, sb, "O");
         serializeIsland(grid, i - 1, j, r, c, sb, "D");
         serializeIsland(grid, i, j + 1, r, c, sb, "E");
