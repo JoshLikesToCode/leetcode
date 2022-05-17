@@ -24,10 +24,12 @@ class Solution {
             return;
         grid[i][j] = 0;
         sb.append(id);
+        // System.out.println("Before Serialization: " + sb.toString());
         serializeIsland(grid, i + 1, j, r, c, sb, "C");
         serializeIsland(grid, i - 1, j, r, c, sb, "O");
         serializeIsland(grid, i, j + 1, r, c, sb, "D");
         serializeIsland(grid, i, j - 1, r, c, sb, "E");
         sb.append("S");
+        // System.out.println("After Serialization: "  + sb.toString());
     }
 }
