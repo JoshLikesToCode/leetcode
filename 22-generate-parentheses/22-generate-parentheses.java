@@ -7,7 +7,7 @@ class Solution {
     
     public void backTrack(int n, int open, int close, StringBuilder currParen, List<String> res)
     {
-        if(currParen.length() == 2*n)
+        if(currParen.length() == n * 2)
             res.add(currParen.toString());
         if(open < n)
         {
