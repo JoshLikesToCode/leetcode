@@ -3,11 +3,9 @@ class Solution {
         UnionFind UF = new UnionFind(isConnected.length);
         for(int i = 0; i < isConnected.length; i++)
         {
-            for(int j = 0; j < isConnected[0].length; j++)
-            {
+            for(int j = 0; j < isConnected[i].length; j++)
                 if(isConnected[i][j] == 1)
                     UF.union(i, j);
-            }
         }
         return UF.count();
     }
@@ -24,7 +22,6 @@ class Solution {
         
         public int find(int vertex)
         {
-            // path compression
             if(parents[vertex] == vertex)
                 return vertex;
             return parents[vertex] = find(parents[vertex]);
@@ -40,14 +37,11 @@ class Solution {
         
         public int count()
         {
-            // get count of connected componenets
-            int count = 0;
+            int res = 0;
             for(int i = 0; i < parents.length; i++)
-            {
                 if(parents[i] == i)
-                    count++;
-            }
-            return count;
+                    res++;
+            return res;
         }
     }
 }
