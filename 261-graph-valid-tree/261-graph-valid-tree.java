@@ -40,14 +40,5 @@ class Solution {
                 return false;
             
         }
-        
-        public int count()
-        {
-            int res = 0;
-            for(int i = 0; i < parents.length; i++)
-                if(parents[i] == i)
-                    res++;
-            return res;
-        }
     }
 }
