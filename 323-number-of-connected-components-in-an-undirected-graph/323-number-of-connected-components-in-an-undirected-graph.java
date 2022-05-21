@@ -1,43 +1,24 @@
-class Solution {
-    public int countComponents(int n, int[][] edges) {
-        UnionFind UF = new UnionFind(n);
-        for(int i = 0; i < edges.length; i++)
-            UF.union(edges[i][0], edges[i][1]);
-        return UF.count();
+public class Solution {
+public int countComponents(int n, int[][] edges) {
+    int[] root = new int[n];
+    for(int i = 0; i < n; i++) root[i] = i;
+    for(int[] edge : edges){
+        int root1 = findRoot(root, edge[0]), root2 = findRoot(root, edge[1]);
+        //Union
+        if(root1 != root2) root[root2] = root1;
     }
-    
-    class UnionFind
-    {
-        int[] parents;
-        public UnionFind(int n)
-        {
-            parents = new int[n];
-            for(int i = 0; i < n; i++)
-                parents[i] = i;
-        }
-        
-        public int find(int vertex)
-        {
-            if(parents[vertex] == vertex)
-                return vertex;
-            return parents[vertex] = find(parents[vertex]);
-        }
-        
-        public void union(int v1, int v2)
-        {
-            v1 = find(v1);
-            v2 = find(v2);
-            if(v1 != v2)
-                parents[v1] = v2;
-        }
-        
-        public int count()
-        {
-            int res = 0;
-            for(int i = 0; i < parents.length; i++)
-                if(parents[i] == i)
-                    res++;
-            return res;
-        }
+    //Count components
+    int count = 0;
+    for(int i = 0; i < n; i++) if(root[i] == i) count++;
+    return count;
+}
+
+//Find with path compression 
+private int findRoot(int[] root, int i){
+    while(root[i] != i){
+        root[i] = root[root[i]];
+        i = root[i];
     }
+    return i;
+}
 }
