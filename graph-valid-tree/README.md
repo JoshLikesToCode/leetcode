@@ -1,3 +1,4 @@
+[Discussion Post (created on 22/4/2022 at 8:40)](https://leetcode.com/problems/graph-valid-tree/discuss/2064149/Java-Union-Find-100-solution)  
 <h2>  Graph Valid Tree</h2><hr><div><p>You have a graph of <code>n</code> nodes labeled from <code>0</code> to <code>n - 1</code>. You are given an integer n and a list of <code>edges</code> where <code>edges[i] = [a<sub>i</sub>, b<sub>i</sub>]</code> indicates that there is an undirected edge between nodes <code>a<sub>i</sub></code> and <code>b<sub>i</sub></code> in the graph.</p>
 
 <p>Return <code>true</code> <em>if the edges of the given graph make up a valid tree, and</em> <code>false</code> <em>otherwise</em>.</p>
