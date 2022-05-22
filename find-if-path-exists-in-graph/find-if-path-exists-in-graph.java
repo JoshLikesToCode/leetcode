@@ -11,18 +11,18 @@ class Solution {
             map.get(e[1]).add(e[0]);
         }
         boolean[] visited = new boolean[n];
-        return dfs(map, visited, source, destination);
-    }
-    public boolean dfs(List<List<Integer>> map, boolean[] visited, int src, int dest)
-    {
-        if(src == dest)
-            return true;
-        visited[src] = true;
-        for(int edge : map.get(src))
+        Stack<Integer> callStack = new Stack<>();
+        callStack.add(source);
+        while(!callStack.isEmpty())
         {
-            if(visited[edge] != true)
-                if(dfs(map, visited, edge, dest))
-                    return true;
+            int node = callStack.pop();
+            if(node == destination)
+                return true;
+            if(visited[node] == true)
+                continue;
+            visited[node] = true;
+            for(int neighbor : map.get(node))
+                callStack.push(neighbor); 
         }
         return false;
     }
