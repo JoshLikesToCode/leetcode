@@ -1,32 +1,28 @@
 class Solution {
-    public boolean validPath(int n, int[][] edges, int start, int end) {
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
         List<List<Integer>> map = new ArrayList<>();
         for(int i = 0; i < n; i++)
         {
-            List<Integer> list = new ArrayList<>();
-            map.add(list);
+            map.add(new ArrayList<>());
         }
         for(int[] e : edges)
         {
             map.get(e[0]).add(e[1]);
             map.get(e[1]).add(e[0]);
         }
-        HashSet<Integer> visited = new HashSet<>();
-        return dfs(map, start, end, visited);
+        boolean[] visited = new boolean[n];
+        return dfs(map, visited, source, destination);
     }
-    
-    public boolean dfs(List<List<Integer>> map, int start, int end, Set<Integer> visited)
+    public boolean dfs(List<List<Integer>> map, boolean[] visited, int src, int dest)
     {
-        if(start == end)
+        if(src == dest)
             return true;
-        visited.add(start);
-        for(int i : map.get(start))
+        visited[src] = true;
+        for(int edge : map.get(src))
         {
-            if(!visited.contains(i))
-            {
-                if(dfs(map, i, end, visited))
+            if(visited[edge] != true)
+                if(dfs(map, visited, edge, dest))
                     return true;
-            }
         }
         return false;
     }
