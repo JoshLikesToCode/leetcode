@@ -2,27 +2,27 @@ class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
         List<List<Integer>> map = new ArrayList<>();
         for(int i = 0; i < n; i++)
-        {
             map.add(new ArrayList<>());
-        }
-        for(int[] e : edges)
+        for(int[] edge : edges)
         {
-            map.get(e[0]).add(e[1]);
-            map.get(e[1]).add(e[0]);
+            // bi-directional graph
+            map.get(edge[0]).add(edge[1]);
+            map.get(edge[1]).add(edge[0]);
         }
         boolean[] visited = new boolean[n];
-        Stack<Integer> callStack = new Stack<>();
-        callStack.add(source);
-        while(!callStack.isEmpty())
+        
+        Queue<Integer> q = new LinkedList<>();
+        q.add(source);
+        while(!q.isEmpty())
         {
-            int node = callStack.pop();
+            int node = q.poll();
             if(node == destination)
                 return true;
-            if(visited[node] == true)
+            if(visited[node])
                 continue;
             visited[node] = true;
-            for(int neighbor : map.get(node))
-                callStack.push(neighbor); 
+            for(int neighbors : map.get(node))
+                q.add(neighbors);
         }
         return false;
     }
