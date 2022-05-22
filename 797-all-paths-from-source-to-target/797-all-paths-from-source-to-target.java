@@ -1,25 +1,25 @@
 class Solution {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        List<List<Integer>> res = new ArrayList<>();
-        int n = graph.length - 1;
-        List<Integer> path = new ArrayList<>(); 
-        path.add(0); // all paths start at src node 0, so add 0 initially
-        backTrack(graph, path, res, 0, n);
-        return res;
+        int target = graph.length - 1;
+        List<List<Integer>> allPaths = new ArrayList<>();
+        List<Integer> currPath = new ArrayList<>();
+        currPath.add(0); // DAG, all will come back to origin
+        backTrack(graph, currPath, allPaths, 0, graph.length - 1);
+        return allPaths;
     }
     
-    public void backTrack(int[][] graph, List<Integer> path, List<List<Integer>> res, int pos, int dest)
+    public void backTrack(int[][] graph, List<Integer> currPath, List<List<Integer>> allPaths, int pos, int dest)
     {
         if(pos == dest)
         {
-            res.add(new ArrayList<>(path));
+            allPaths.add(new ArrayList<>(currPath));
             return;
         }
-        for(int neighbor : graph[pos])
+        for(int neighbors : graph[pos])
         {
-            path.add(neighbor);
-            backTrack(graph, path, res, neighbor, dest);
-            path.remove(path.size() - 1);
+            currPath.add(neighbors);
+            backTrack(graph, currPath, allPaths, neighbors, dest);
+            currPath.remove(currPath.size() - 1);
         }
     }
 }
