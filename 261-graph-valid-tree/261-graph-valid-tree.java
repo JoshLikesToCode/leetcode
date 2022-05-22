@@ -1,12 +1,15 @@
 class Solution {
     public boolean validTree(int n, int[][] edges) {
-        if(edges.length != n - 1)
+        if(edges.length != n - 1) // any less edges and it's not a tree, anymore and it's got cycles
             return false;
-        
         UnionFind UF = new UnionFind(n);
-        for(int i = 0; i < edges.length; i++)
-            if(!UF.union(edges[i][0], edges[i][1]))
-               return false;
+        for(int[] edge : edges)
+        {
+            int e1 = edge[0];
+            int e2 = edge[1];
+            if(!UF.union(e1, e2))
+                return false;
+        }
         return true;
     }
     
@@ -20,11 +23,11 @@ class Solution {
                 parents[i] = i;
         }
         
-        public int find(int vertex)
+        public int find(int v)
         {
-            if(parents[vertex] == vertex)
-                return vertex;
-            return parents[vertex] = find(parents[vertex]);
+            if(parents[v] == v)
+                return v;
+            return parents[v] = find(parents[v]);
         }
         
         public boolean union(int v1, int v2)
@@ -38,7 +41,6 @@ class Solution {
             }
             else
                 return false;
-            
         }
     }
 }
