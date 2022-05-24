@@ -2,14 +2,12 @@ class Solution {
     public int earliestAcq(int[][] logs, int n) {
         Arrays.sort(logs, (a,b) -> Integer.compare(a[0], b[0]));
         UnionFind UF = new UnionFind(n);
-        
         int components = n;
-        for(int[] log : logs)
+        for(int[] log: logs)
         {
-            int timestamp = log[0];
             int friendA = log[1];
             int friendB = log[2];
-            
+            int timestamp = log[0];
             if(UF.union(friendA, friendB))
                 components--;
             if(components == 1)
