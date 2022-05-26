@@ -12,9 +12,9 @@ class Solution {
                 }
             }
         }
-        int res = 0;
-        for(int max : dp)
-            res = Math.max(max, res);
-        return res;
+        int longest = 0;
+        for(int c : dp)
+            longest = Math.max(longest, c);
+        return longest;
     }
 }
