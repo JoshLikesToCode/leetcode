@@ -11,7 +11,7 @@ class Solution {
             String word = stack.pop();
             for(char c : word.toCharArray())
                 s[idx++] = c;
-            if(idx < s.length - 1)
+            if(idx < s.length)
                 s[idx++] = ' ';
         }
     }
