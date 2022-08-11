@@ -8,10 +8,7 @@ public class Solution {
         for(int i = 0; i < allRows.Length; i++)
         {
             foreach(char c in allRows[i].ToCharArray())
-            {
                 charByRow[c] = i;
-                // Console.WriteLine("i = " + i + ", c = " + c + ", and charByRow[c] = " + charByRow[c]);
-            }
         }
         List<string> res = new List<string>();
         foreach(string s in words)
