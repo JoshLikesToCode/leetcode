@@ -1,5 +1,3 @@
-using System.Collections.Specialized;
-
 public class Solution {
     public int FirstUniqChar(string s) {
         int[] freqMap = new int[26];
