@@ -13,8 +13,8 @@ public class Solution {
     public ListNode ReverseList(ListNode head) {
         if(head == null)
             return null;
-        ListNode curr = head;
         ListNode prev = null;
+        ListNode curr = head;
         while(curr != null)
         {
             ListNode next = curr.next;
